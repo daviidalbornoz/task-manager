@@ -42,7 +42,7 @@ export default function TaskBoard() {
   if (!hasMounted) return <div className="max-w-lg mx-auto p-6 mt-10">Loading...</div>;
 
   return (
-    <div className="max-w-lg mx-auto p-6 border rounded-xl shadow-md mt-10 bg-white">
+      <div className="max-w-lg mx-auto p-10 bg-[#e0e5ec] rounded-[50px] shadow-[20px_20px_60px_#bebebe,-20px_-20px_60px_#ffffff] mt-10">
       <h2 className="text-xl font-bold mb-4">Task Manager</h2>
       
       {/* Sibling 1: TaskStats */}

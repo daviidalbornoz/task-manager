@@ -18,11 +18,11 @@ export default function AddTaskForm({ onAdd }) {
         value={title} 
         onChange={(e) => setTitle(e.target.value)}
         placeholder="What needs to be done?" 
-        className="flex-1 border rounded px-3 py-2 text-sm focus:outline-green-600"
+        className="flex-1 bg-[#e0e5ec] shadow-[inset_6px_6px_12px_#bebebe,inset_-6px_-6px_12px_#ffffff] rounded-2xl p-4 outline-none text-gray-600 placeholder-gray-400"
       />
       <button 
         type="submit" 
-        className="bg-green-700 text-white px-4 py-2 rounded text-sm hover:bg-green-800 transition-colors"
+        className="bg-[#e0e5ec] text-blue-600 font-bold px-6 py-4 rounded-2xl shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all duration-200"
       >
         Add Task
       </button>
