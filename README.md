@@ -34,17 +34,20 @@ Tailwind `flex` with a fixed-width `aside` and a `flex-1` main content area.
 ---
 
 ## Project Structure
+
+```
 src/
 ├── app/
 │   ├── globals.css        # Tailwind import only
 │   ├── layout.js          # Root layout — fonts, metadata, bg color
 │   └── page.js            # Server Component — renders TaskBoard
 └── components/
-├── TaskBoard.js        # Client Component — owns all state
-├── TaskList.js         # Renders filtered task array via .map()
-├── TaskCard.js         # Single task row — toggle + delete
-├── AddTaskForm.js      # Controlled form — lifts new title up
-└── TaskStats.js        # Live counts, progress bar, clear button
+    ├── TaskBoard.js        # Client Component — owns all state
+    ├── TaskList.js         # Renders filtered task array via .map()
+    ├── TaskCard.js         # Single task row — toggle + delete
+    ├── AddTaskForm.js      # Controlled form — lifts new title up
+    └── TaskStats.js        # Live counts, progress bar, clear button
+```
 ---
 
 ## Setup Instructions
