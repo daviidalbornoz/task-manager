@@ -1,35 +1,29 @@
-# Task Manager 2.0
+# Task Manager
 
-A Neumorphic task manager built with Next.js 16, React 19, and Tailwind CSS v4.
-Built for ISM 3232 – Business Data Applications, Module 10 (USF Muma College of Business).
+A clean, fully functional task management app built with **Next.js 14** and **React**, featuring a Neumorphic UI design. Users can add, complete, filter, and delete tasks — with all data persisted to `localStorage` so nothing is lost on page refresh.
 
 ---
 
 ## Features
 
-- Add tasks via a controlled form with blank-input validation
-- Toggle tasks complete/incomplete with visual Neumorphic feedback
-- Delete individual tasks
-- Filter view — All / Active / Done via a sidebar panel
-- Live stats bar with total, active, and completed counts + progress bar
-- Clear all completed tasks in one click
-- Persists across browser refreshes via localStorage
+- Add new tasks with a controlled input form
+- Mark tasks complete with a checkbox toggle
+- Delete individual tasks or clear all completed tasks at once
+- Filter tasks by **All**, **Active**, or **Done**
+- Live progress bar showing completion percentage
+- Data persists across page refreshes via `localStorage`
+- Neumorphic design system with smooth shadow transitions
 
 ---
 
-## Design Direction — Neumorphism (Soft UI)
+## Technologies Used
 
-The app uses a single base color (`#e0e5ec`) throughout. Depth is created entirely
-through shadow pairs:
-
-- **Raised elements** (active task cards, buttons, stats panel) use outward double shadows:
-  `shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff]`
-- **Sunken elements** (completed tasks, the text input, active filter button) use inset shadows:
-  `shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff]`
-
-Key layout departure from the workshop: filter buttons are moved into a **left sidebar panel**
-rather than a horizontal row above the task list. This creates a two-column layout using
-Tailwind `flex` with a fixed-width `aside` and a `flex-1` main content area.
+- [Next.js 14](https://nextjs.org/) (App Router)
+- [React 18](https://react.dev/) (Hooks: `useState`, `useEffect`)
+- [Tailwind CSS v4](https://tailwindcss.com/) (utility-first styling)
+- JavaScript (ES6+)
+- `localStorage` for client-side persistence
+- `crypto.randomUUID()` for unique task IDs
 
 ---
 
@@ -38,65 +32,58 @@ Tailwind `flex` with a fixed-width `aside` and a `flex-1` main content area.
 ```
 src/
 ├── app/
-│   ├── globals.css        # Tailwind import only
-│   ├── layout.js          # Root layout — fonts, metadata, bg color
-│   └── page.js            # Server Component — renders TaskBoard
+│   ├── page.js          # Root route — renders TaskBoard
+│   ├── layout.js        # Global layout, fonts, metadata
+│   └── globals.css      # Tailwind import
 └── components/
-    ├── TaskBoard.js        # Client Component — owns all state
-    ├── TaskList.js         # Renders filtered task array via .map()
-    ├── TaskCard.js         # Single task row — toggle + delete
-    ├── AddTaskForm.js      # Controlled form — lifts new title up
-    └── TaskStats.js        # Live counts, progress bar, clear button
+    ├── TaskBoard.js     # Central state owner — all logic lives here
+    ├── TaskStats.js     # Live task counts + progress bar
+    ├── AddTaskForm.js   # Controlled input form for new tasks
+    ├── TaskList.js      # Maps filtered tasks to TaskCard components
+    └── TaskCard.js      # Individual task row (checkbox + delete)
 ```
----
-
-## Setup Instructions
-
-### Prerequisites
-- Node.js 18 or higher
-- npm
-
-### Steps
-
-1. Clone the repository:
-```bash
-   git clone https://github.com/YOUR_USERNAME/task-manager.git
-   cd task-manager
-```
-
-2. Install dependencies:
-```bash
-   npm install
-```
-
-3. Start the development server:
-```bash
-   npm run dev
-```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## AI Usage Log
+## How to Run
 
-- **TaskBoard.js layout restructure** — Asked Claude to convert the horizontal filter
-  buttons into a two-column sidebar layout using Tailwind flex. It produced the `aside` +
-  `flex-1` panel structure. I reviewed each className and confirmed the shadow values matched
-  my existing Neumorphic system before keeping it.
+**Prerequisites:** Node.js 18+ and npm installed.
 
-- **Code commenting pass** — Asked Claude to add header blocks and "why" comments to each
-  component file following the rubric requirements. I read every comment line by line, rewrote
-  any that did not match how I understood the code, and removed any that restated the obvious.
+```bash
+# 1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/task-manager.git
 
-- **TaskStats.js restyling** — Asked Claude to update the stats panel from a flat `bg-slate-50`
-  card to match the Neumorphic shadow system used in the rest of the app. I verified the inset
-  shadow on the progress bar track matched the input field style in AddTaskForm.js.
+# 2. Navigate into the project folder
+cd task-manager
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the development server
+npm run dev
+```
+
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## Academic Integrity
+## Key Concepts Demonstrated
 
-AI assistance was used as permitted under the ISM 3232 AI policy. All submitted code
-was reviewed, understood, and where necessary modified by the student. This project
-was built independently and not copied from another student or commercial template.
+- **Lifting state up** — `TaskBoard` is the single source of truth; all child components receive data via props and communicate back via callbacks
+- **Controlled components** — all inputs are driven by React state, not the DOM
+- **Derived values over state** — `visibleTasks`, `completed`, and `active` are computed fresh each render rather than stored as separate state, preventing sync bugs
+- **Server vs. Client Components** — `page.js` and `layout.js` are Server Components; interactive components declare `'use client'` at the boundary
+- **Hydration safety** — `hasMounted` guard prevents `localStorage` from being accessed during SSR, avoiding hydration mismatch errors
+
+---
+
+## What I Learned
+
+Building this project deepened my understanding of React's unidirectional data flow. Managing state in one place (`TaskBoard`) while passing callbacks down to stateless child components made the app easier to debug and reason about. I also learned how Next.js App Router separates server and client rendering boundaries, and why that distinction matters for performance and hydration.
+
+---
+
+## Author
+
+David Albornoz — [University of South Florida, Muma College of Business](https://www.usf.edu/business/)  
+Business Analytics & Information Systems | Cybersecurity Concentration
