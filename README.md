@@ -51,7 +51,7 @@ src/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/task-manager.git
+git clone https://github.com/daviidalbornoz/task-manager.git
 
 # 2. Navigate into the project folder
 cd task-manager
